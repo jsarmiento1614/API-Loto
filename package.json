@@ -1,0 +1,28 @@
+{
+  "name": "loto",
+  "version": "1.0.0",
+  "description": "API loto",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "mssql": "^5.0.0-alpha.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsarmiento1614/API-Loto.git"
+  },
+  "author": "Jsarmiento, JGuerrero, FAlberto\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[3~a\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[g\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsarmiento1614/API-Loto/issues"
+  },
+  "homepage": "https://github.com/jsarmiento1614/API-Loto#readme"
+}
