@@ -40,7 +40,7 @@ Peg3N3
 TypeId
 ```
 
-#Convencion de nombres
+# Convencion de nombres
 ```
  Post(localhost:8090/v1/user/create)
  Post(localhost:8090/v1/user/:id/create/loto)
