@@ -3,5 +3,4 @@ module.exports = (app, sql, sqlconfig) => {
     app.get('/', (req, res) => {
         res.send('<h1>BIENVENIDO A LA LOTELSA</h1>')
     });
-
 }
