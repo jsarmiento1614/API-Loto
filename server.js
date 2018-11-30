@@ -21,7 +21,7 @@ app.use(bodyparser.urlencoded({
 
 
 // creao una variable que almacenara la funcion de configuracion de acceso a la base detos.
-const sqlconfig = {
+const sqlConfig = {
     server: process.env.DB_SERVER,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
@@ -47,7 +47,7 @@ app.use(function (err, req, res, next) {
 app.listen(parseInt(process.env.APP_PORT), () => {
     console.log("Esta corriendo el servidor!!!")
     console.log(result.parsed);
-    console.log(sqlconfig);
+    console.log(sqlConfig);
 });
 
-require("./request/user")(app, sql, sqlconfig);
+require("./request/user")(app, sql, sqlConfig);

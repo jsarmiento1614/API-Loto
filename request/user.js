@@ -1,4 +1,5 @@
-module.exports = (app, sql, sqlconfig) => {
+var auth = require('../auth');
+module.exports = (app, sql, sqlConfig) => {
     // Mensaje de Bienvenida
     app.get('/', (req, res) => {
         res.send('<h1>BIENVENIDO A LA LOTELSA</h1>')
@@ -6,12 +7,13 @@ module.exports = (app, sql, sqlconfig) => {
 
     //Post que Crea el Usuario
 
-app.Post("/v1/user/create",(req, res, next) =>{
+app.post("/v1/user/create",(req, res, next) =>{
         
     var user = req.body.user;
     var password = req.body.password;
     
-
+    console.log(user+ password);
+    
     if(!user &&  !password){
         res.send("error");
     }
@@ -68,5 +70,30 @@ app.post("/v1/user/login",(req, res, next)=>{
     .catch(err =>{
         return next(err);
     })
-})
+});
+
+app.get("/v1/diaria/:fecha",(req,res)=>{
+    let fecha = req.params.fecha;
+
+    if(!fecha){
+        res.send({message: 'Error parametro fecha no existe'});
+    }
+
+    var q=`select * from [dbo].[Diaria] where [fecha]=cast(${fecha} as smalldatetime)`;
+    
+    new sql.ConnectionPool(sqlConfig).connect().then(pool => {
+        return pool.query(q)
+    })
+    .then(result => {
+        var data = {
+            success: true,
+            message: `Se ha creado ${result.rowsAffected} registro nuevo`
+        }
+        res.send(data);
+    })
+    .catch(err => {
+        console.error(err);
+    });
+});
+
 }
