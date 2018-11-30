@@ -74,20 +74,21 @@ app.post("/v1/user/login",(req, res, next)=>{
 
 app.get("/v1/diaria/:fecha",(req,res)=>{
     let fecha = req.params.fecha;
-
+    console.log(fecha);
     if(!fecha){
         res.send({message: 'Error parametro fecha no existe'});
     }
 
-    var q=`select * from [dbo].[Diaria] where [fecha]=cast(${fecha} as smalldatetime)`;
+    var q=`select * from [dbo].[Diaria] where [fecha]='${fecha}'`;
     
     new sql.ConnectionPool(sqlConfig).connect().then(pool => {
         return pool.query(q)
     })
     .then(result => {
-        var data = {
+        var data= {
             success: true,
-            message: `Se ha creado ${result.rowsAffected} registro nuevo`
+            message: '',
+            data: result.recordset
         }
         res.send(data);
     })
@@ -96,4 +97,29 @@ app.get("/v1/diaria/:fecha",(req,res)=>{
     });
 });
 
+
+app.get("/v1/Pega3/:fecha",(req,res)=>{
+    let fecha = req.params.fecha;
+    console.log(fecha);
+    if(!fecha){
+        res.send({message: 'Error parametro fecha no existe'});
+    }
+
+    var q=`select * from [dbo].[Pega3] where [fecha]='${fecha}'`;
+    
+    new sql.ConnectionPool(sqlConfig).connect().then(pool => {
+        return pool.query(q)
+    })
+    .then(result => {
+        var data= {
+            success: true,
+            message: '',
+            data: result.recordset
+        }
+        res.send(data);
+    })
+    .catch(err => {
+        console.error(err);
+    });
+});
 }

@@ -17,7 +17,7 @@ La empresa lotelsa lo ha contratado para desarrollar el API del famoso juego de 
  Post(localhost:8090/v1/user/:id/create/diaria) | James
 
  Get(localhost:8090/v1/diaria/:fecha)   | Jesús
- Get(localhost:8090/v1/loto/:fecha)  |  Jesús
+ Get(localhost:8090/v1/Pega3/:fecha)  |  Jesús
 ```
 
 ## Base de datos nombre (loto)
