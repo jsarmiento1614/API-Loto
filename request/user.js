@@ -122,4 +122,72 @@ app.get("/v1/Pega3/:fecha",(req,res)=>{
         console.error(err);
     });
 });
+app.post("/v1/user/:id/create/loto",auth.ValidateToken(),(req, res, next)=>{
+    var userId = req.body.userId;
+    var typeId = req.body.typeId;
+
+    if(!UserId|| !typeId){
+        res.status(403).send({ message: "missing parameters"});
+    }
+
+    var q=  `insert into Game(UserId,TypeId)values(${userId}, ${typeId})`
+    
+    new sql.ConnectionPool(sqlConfig).connect().then(request => {
+        return request.query(q);
+    })
+    .then(result => {
+
+        if(result.recordset.length > 0)
+        {
+            res.send({ 
+                    success: true, 
+                    message: "",
+                    token: auth.CreateToken(result.recordset.UserId),
+                    user: result.recordset
+                });
+        } else {
+            res.status(403).send({
+                success: false,
+                message:"Error de usuario o juego"
+            })
+        }
+    })
+    .catch(err =>{
+        return next(err);
+    })
+});
+app.post("/v1/user/:id/create/diaria",auth.ValidateToken(),(req, res, next)=>{
+    let userId = req.body.userId;
+    let typeId = req.body.typeId;
+
+    if(!UserId|| !typeId){
+        res.status(403).send({ message: "missing parameters"});
+    }
+
+    var q=  `insert into Game(UserId,TypeId)values(${userId}, ${typeId})`
+    
+    new sql.ConnectionPool(sqlConfig).connect().then(request => {
+        return request.query(q);
+    })
+    .then(result => {
+
+        if(result.recordset.length > 0)
+        {
+            res.send({ 
+                    success: true, 
+                    message: "",
+                    token: auth.CreateToken(result.recordset.UserId),
+                    user: result.recordset
+                });
+        } else {
+            res.status(403).send({
+                success: false,
+                message:"Error de usuario o juego"
+            })
+        }
+    })
+    .catch(err =>{
+        return next(err);
+    })
+});
 }
